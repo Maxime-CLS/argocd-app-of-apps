@@ -6,12 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Maxime-CLS/argocd-app-of-apps.git
-    targetRevision: main
-    path: argocd-app-of-apps/grafana/dev
+    chart: grafana
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 9.3.0   # ou la version que tu veux
     helm:
       valueFiles:
         - values-dev.yaml
+    path: grafana/dev       # chemin relatif dans ton Git (uniquement pour values.yaml)
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring-dev

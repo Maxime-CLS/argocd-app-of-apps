@@ -6,12 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Maxime-CLS/argocd-app-of-apps.git
-    targetRevision: main
-    path: argocd-app-of-apps/grafana/prod
+    chart: grafana
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 9.2.5    # ← encore plus conservateur (ancienne version stable)
     helm:
       valueFiles:
         - values-prod.yaml
+    path: grafana/prod       # dossier contenant le values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring-prod

@@ -1,0 +1,32 @@
+adminUser: admin
+adminPassword: devpass123
+
+replicaCount: 1
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus.monitoring-dev.svc.cluster.local:9090
+        access: proxy
+        isDefault: true
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: default
+        orgId: 1
+        folder: Dev Dashboards
+        type: file
+        options:
+          path: /var/lib/grafana/dashboards/dev
+
+dashboardsConfigMaps:
+  dev-dashboards: "dev"
+
+plugins:
+  - grafana-piechart-panel
+  - grafana-clock-panel
